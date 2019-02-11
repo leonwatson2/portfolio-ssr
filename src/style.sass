@@ -1,0 +1,40 @@
+@import './src/sass/materialize.scss'
+
+body
+    background: #000
+
+.section
+    position: relative
+    min-height: calc(100vh - 64px)
+
+.polka-dot
+    background: black
+    background-image: radial-gradient(white 5%, transparent 0), radial-gradient(white 5%, transparent 0)
+    background-size: 30px 30px
+    background-position: 0 0, 15px 15px
+    .header 
+        background: rgba(0,0,0, .74)
+        padding: 10px 0
+.polka-dot-inverse
+    background: white
+    background-image: radial-gradient(black 5%, transparent 0), radial-gradient(black 5%, transparent 0)
+    background-size: 30px 30px
+    background-position: 0 0, 15px 15px
+    .header 
+        background: rgba(0,0,0, .74)
+        padding: 10px 0
+
+.leon-ledge
+    position: absolute
+    height: 13rem
+    bottom: -37px
+    right: 0
+    z-index: 1
+    img
+        height: 100%
+
+    @media #{$large-and-up} 
+        height: 20rem
+        bottom: -61px
+    @media #{$extra-large-and-up}
+        bottom: -63px
