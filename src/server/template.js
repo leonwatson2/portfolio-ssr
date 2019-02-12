@@ -17,6 +17,7 @@ export function templateHTML(title, markup, initialState = {}) {
         `
     }
     let styles = `
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="style.css">    
     `
