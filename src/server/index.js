@@ -7,16 +7,35 @@ import App from '../shared/App'
 import { templateHTML } from './template'
 import { matchPath } from 'react-router-dom'
 import routes from '../shared/routes'
-
+import bodyParser from 'body-parser'
+import { sendEmail } from './sendEmail';
 const PORT = process.env.PORT || 3000
 
 const app = express()
 
-app.use(cors())
-
 app.use(express.static("public"))
-
-app.get('*', (req, res, next) => {
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.post('/sendEmail', (req, res)=>{
+    const { name, email, reason } = req.body
+    if(!(name && email && reason)){
+        res.json({ error: 'Correct Params Not Provided' })
+    }
+    sendEmail({ name, email, reason })
+        .then( (wasSent) => {
+            if(wasSent)
+                res.sendStatus(202)
+            else{
+                res.status(400)
+                res.json({ err })
+            }
+        })
+        .catch( (err) => {
+            res.status(400)
+            res.json({ err })
+        })
+})
+app.get('*', (req, res) => {
     const activeRoute = routes.find(route => matchPath(req.url, route)) || {} 
 
     const promise = activeRoute.fetchInitialData 
