@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
+import LazyImage from './LazyImage';
 export const Section = (props) => (
 
     <section className={cx("section", { 'white': props.white }, props.containerClassName)}>
@@ -55,11 +56,34 @@ export const CardTitle = (props) => (
         {props.icon && <i className="material-icons right">{props.icon}</i>}
     </span>
 )
+export const ProjectCardTile = (props) => (
+    <span className={cx("card-title", props.className)}>
+        {props.title} 
+        <a href={props.url} target={'_blank'} className="project-link"><i className="material-icons tiny">open_in_new</i></a>        
+        {props.icon && <i className="material-icons right">{props.icon}</i>}
+    </span>
+)
 export const CardImage = (props) => (
     <div className="card-image waves-effect waves-block waves-light">
-        <img className="activator" src={props.imageUrl} />
+        <LazyImage imageUrl={props.imageUrl} />
     </div>
 )
 CardImage.propTypes = {
     imageUrl: PropTypes.string,
 }
+
+export const Spinner = (props) =>  (
+    <div className={props.className}>
+        <div className="preloader-wrapper big active">
+            <div className="spinner-layer spinner-blue-only">
+            <div className="circle-clipper left">
+                <div className="circle"></div>
+            </div><div className="gap-patch">
+                <div className="circle"></div>
+            </div><div className="circle-clipper right">
+                <div className="circle"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+)

@@ -6,7 +6,8 @@ const routes = [
     {
         path: '/',
         exact: true,
-        component: Home
+        component: Home,
+        fetchInitialData: (path='') => fetchProjects(path.split('/').pop())
     },
     {
         path: '/projects',
